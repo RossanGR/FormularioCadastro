@@ -1,25 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string, 
-  email: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H', email:'test@teste'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He', email:'test@teste'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li', email:'test@teste'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be', email:'test@teste'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B', email:'test@teste'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C', email:'test@teste'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N', email:'test@teste'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O', email:'test@teste'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F', email:'test@teste'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne', email:'test@teste'},
-];
+import { UserService } from '../../sevices/user.service'
+import { User } from '../../interfaces/User';
 
 @Component({
   selector: 'app-list-users',
@@ -28,12 +9,44 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class ListUsersComponent implements OnInit {
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  public ELEMENT_DATA: User[] = [];
+  public displayedColumns = ['Nome', 'CPF', 'Telefone', 'E-mail', 'Excluir', 'Editar'];
+  public dataSource:User[] = this.ELEMENT_DATA;
+  
 
-  constructor() { }
+
+  constructor(private userService: UserService) { }
+
+  getUserLocalStorage():void{
+    const firstAccess = !Number(localStorage.getItem('firstAccess') || 0) ;
+    const dataStorage: User[] = JSON.parse(localStorage.getItem('users') || '[]')
+    if(!dataStorage.length && firstAccess){this.getUser();}
+    else{this.dataSource = dataStorage}
+  }
 
   ngOnInit(): void {
+    this.getUserLocalStorage();
   }
+
+  getUser(): void {
+    this.userService.getAll()
+    .subscribe(
+      (response) => {
+        this.dataSource = response.map((user:User,index:any)=>({...user, id:index})) 
+        localStorage.setItem('users', JSON.stringify(this.dataSource));
+        localStorage.setItem('firstAccess', '1');
+      }
+        );
+   }
+
+   deleteUser(cpf:string){
+    const users = this.dataSource;
+    const userDelete = JSON.stringify(users.filter((item) => item.cpf != cpf));
+    localStorage.setItem('users', userDelete);
+    this.getUserLocalStorage();
+   }
+
+ 
+
 
 }

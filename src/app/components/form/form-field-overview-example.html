@@ -34,7 +34,7 @@
   <button>Cadastrar</button>
 </form> -->
 
-<form class="example-form" [formGroup]="formData">
+<form (ngSubmit)="submit()" class="example-form" [formGroup]="formData">
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Nome completo (sem abreviação)</mat-label>
     <input type="text" matInput formControlName="name">

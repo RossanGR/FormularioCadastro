@@ -15,6 +15,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { MatTableModule } from '@angular/material/table';
 import { ListUsersComponent } from './components/list-users/list-users.component';
 
+import { EditUserComponent } from './pages/edit-user/edit-user.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +24,7 @@ import { ListUsersComponent } from './components/list-users/list-users.component
     RegisterComponent,
     HomeComponent,
     ListUsersComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,

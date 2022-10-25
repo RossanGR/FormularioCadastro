@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserService } from './sevices/user.service';
+
 
 @Component({
   selector: 'app-root',
@@ -8,10 +8,7 @@ import { UserService } from './sevices/user.service';
 })
 export class AppComponent {
   title = 'form-app';
-  constructor(private userService: UserService) {
-    this.getUser();
+  constructor() {
   }
-  getUser(): void {
-   this.userService.getAll().subscribe((respose) => (console.log(respose)));
-  }
+ 
 }
