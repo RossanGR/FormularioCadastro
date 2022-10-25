@@ -20,6 +20,7 @@ export class ListUsersComponent implements OnInit {
   getUserLocalStorage():void{
     const firstAccess = !Number(localStorage.getItem('firstAccess') || 0) ;
     const dataStorage: User[] = JSON.parse(localStorage.getItem('users') || '[]')
+
     if(!dataStorage.length && firstAccess){this.getUser();}
     else{this.dataSource = dataStorage}
   }
@@ -33,6 +34,7 @@ export class ListUsersComponent implements OnInit {
     .subscribe(
       (response) => {
         this.dataSource = response.map((user:User,index:any)=>({...user, id:index})) 
+
         localStorage.setItem('users', JSON.stringify(this.dataSource));
         localStorage.setItem('firstAccess', '1');
       }
@@ -41,8 +43,10 @@ export class ListUsersComponent implements OnInit {
 
    deleteUser(cpf:string){
     const users = this.dataSource;
+
     const userDelete = JSON.stringify(users.filter((item) => item.cpf != cpf));
     localStorage.setItem('users', userDelete);
+
     this.getUserLocalStorage();
    }
 
