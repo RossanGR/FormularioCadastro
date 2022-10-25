@@ -40,4 +40,9 @@ button:disabled:hover{ opacity: 1; }
 
  @media screen and (max-width:768px) {
     form{ width: 300px; margin: 50px auto; padding: 0px;}
+    .spinner:before{top: 38%;}
+ }
+
+ @media screen and (max-width: 1024px){
+  .spinner:before{top: 42.6%;}
  }

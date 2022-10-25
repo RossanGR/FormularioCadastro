@@ -44,8 +44,9 @@ export class EditUserComponent implements OnInit {
 
       this.load = false
       alert('Editado com sucesso!');
+
       location.reload();
-    },3000)
+    },2000)
   }
 
 }
