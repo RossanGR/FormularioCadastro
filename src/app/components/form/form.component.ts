@@ -14,11 +14,12 @@ export class FormComponent implements OnInit {
 
   public formData!: FormGroup;
   public load: boolean = false
+  
   public count: number = 3;
   public phoneMask = ['(', /\d/, /\d/, ')', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   public cpfMask = [/\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
 
-
+  
   constructor() { }
 
   ngOnInit(): void {
@@ -33,19 +34,21 @@ export class FormComponent implements OnInit {
 
   }
 
- 
   submit() {
     this.load = true
     this.count += 1;
+    console.log(this.count)
     setTimeout(() => {
       if (this.formData.invalid) { return; }
       const dataStorage = JSON.parse(localStorage.getItem('users') || '[]');
       dataStorage.push(this.formData.value)
       const dataLocal = JSON.stringify(dataStorage);
       localStorage.setItem('users', dataLocal);
-
       this.load = false
+      alert('Cadastrado com sucesso!');
+      location.reload();
     }, 3000,)
+    
   }
 
   

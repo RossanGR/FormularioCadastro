@@ -41,8 +41,10 @@ export class EditUserComponent implements OnInit {
   
       const dataLocal = JSON.stringify(dataStorage);
       localStorage.setItem('users', dataLocal);
-      
+
       this.load = false
+      alert('Editado com sucesso!');
+      location.reload();
     },3000)
   }
 

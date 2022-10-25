@@ -13,6 +13,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { CPFPipe } from './pipes/cpf';
 import { PhonePipe } from './pipes/phone';
 
+
 // Components
 import { FormComponent } from './components/form/form.component';
 import { MatFormFieldModule} from '@angular/material/form-field';
@@ -57,8 +58,8 @@ import { EditUserComponent } from './pages/edit-user/edit-user.component';
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
-    MatProgressSpinnerModule
-  ],
+    MatProgressSpinnerModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
