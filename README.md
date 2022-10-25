@@ -8,7 +8,7 @@ Realizar o cadastro de usuários atráves de um sistema web. Sendo possível vis
 
 ## Como abrir a aplicação?
 
-1. Primeiramente clone esse projeto para seu ambiente de desenvolvimente
+1. Primeiramente clone esse projeto para seu ambiente de desenvolvimento
 
 2. Assim que abrir o projeto em sua IDLE preferida, no terminal digite `npm install`, para realizar a instalação do pacote `NPM`.
 
